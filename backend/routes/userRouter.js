@@ -113,4 +113,26 @@ router.put("/update", authMiddleware, async (req, res) => {
   });
 });
 
+// Fetching users from there name
+
+router.get("/bulk", async (req, res) => {
+  const filter = req.query.filter || "";
+
+  const users = await userModel.find({
+    $or: [
+      { firstName: { "$regex": filter } },
+      { lastName: { "$regex": filter } },
+    ],
+  });
+
+  res.json({
+    user: users.map((user) => ({
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      _id: user._id,
+    })),
+  });
+});
+
 module.exports = router;
