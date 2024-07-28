@@ -39,7 +39,7 @@ router.post("/signup", async (req, res) => {
     username: req.body.username,
     password: req.body.password,
     firstName: req.body.firstName,
-    lastName: req.body.LastName,
+    lastName: req.body.lastName,
   });
   const userId = user._id;
 
@@ -107,7 +107,14 @@ router.put("/update", authMiddleware, async (req, res) => {
   if (!success) {
     return res.status(411).json({ message: "Invalid Inputs" });
   }
-  res.status(200);
+  console.log(req.userId);
+  await userModel.updateOne(
+    { _id: req.userId },
+    { $set: { firstName: "Ayush" } }
+  );
+  res.status(200).json({
+    message: "Updated user information.",
+  });
 });
 
 module.exports = router;
