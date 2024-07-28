@@ -107,7 +107,6 @@ router.put("/update", authMiddleware, async (req, res) => {
   if (!success) {
     return res.status(411).json({ message: "Invalid Inputs" });
   }
-  console.log(req.userId);
   await userModel.updateOne({ _id: req.userId }, { $set: req.body });
   res.status(200).json({
     message: "Updated user information.",
