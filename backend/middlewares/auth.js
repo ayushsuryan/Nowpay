@@ -1,4 +1,4 @@
-const { JWT_SECRET } = require("../config");
+const JWT_SECRET = require("../config");
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
@@ -10,11 +10,9 @@ const authMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.userId = decoded.userId;
-    console.log(decoded);
-    console.log(req.userId);
     next();
   } catch (err) {
-    return res.status(403).json({});
+    return res.status(403).json({ err });
   }
 };
 

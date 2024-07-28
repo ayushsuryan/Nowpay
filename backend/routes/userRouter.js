@@ -5,6 +5,7 @@ const zod = require("zod");
 const { userModel } = require("../db");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = require("../config");
+const { authMiddleware } = require("../middlewares/auth");
 
 // signup
 
@@ -95,5 +96,18 @@ router.post("/signin", async (req, res) => {
 });
 
 // update user information.
+const updateBody = zod.object({
+  firstName: zod.string().optional(),
+  lastName: zod.string().optional(),
+  password: zod.string().optional(),
+});
+
+router.put("/update", authMiddleware, async (req, res) => {
+  const { success } = updateBody.safeParse(req.body);
+  if (!success) {
+    return res.status(411).json({ message: "Invalid Inputs" });
+  }
+  res.status(200);
+});
 
 module.exports = router;
