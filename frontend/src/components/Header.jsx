@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <div>
-      <div className="shadow-sm w-full h-20 grid grid-cols-12 ">
+      <div className=" w-full h-20 grid grid-cols-12 bg-pink-50 ">
         <div className="flex justify-center items-center col-span-2 sm:col-span-2 md:col-span-1 cursor-pointer  ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
