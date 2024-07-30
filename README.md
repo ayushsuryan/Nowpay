@@ -1,1 +1,1 @@
-## Build a basic version of Payments App
+## NowPay App
