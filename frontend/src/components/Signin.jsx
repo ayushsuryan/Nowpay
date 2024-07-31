@@ -17,9 +17,11 @@ export default function Login() {
         }
       );
       const token = response.data.token;
-      localStorage.setItem("nowPayToken", token);
-      localStorage.getItem("nowPayToken");
+
       const decoded = jwtDecode(token);
+      if (decoded) {
+        localStorage.setItem("nowPayToken", "Bearer " + token);
+      }
       // console.log(decoded);
     } catch (error) {
       console.log("An error occurred");
@@ -120,7 +122,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      {JSON.stringify(userCrential)}
     </div>
   );
 }
