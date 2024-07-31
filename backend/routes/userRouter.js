@@ -53,7 +53,8 @@ router.post("/signup", async (req, res) => {
     {
       userId,
     },
-    JWT_SECRET
+    JWT_SECRET,
+    { expiresIn: "30m" }
   );
 
   res.json({
@@ -87,7 +88,8 @@ router.post("/signin", async (req, res) => {
       {
         userId: user._id,
       },
-      JWT_SECRET
+      JWT_SECRET,
+      { expiresIn: "30m" }
     );
 
     res.json({
