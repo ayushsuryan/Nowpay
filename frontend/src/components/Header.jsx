@@ -2,12 +2,6 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Customers", href: "#" },
-  { name: "Merchants", href: "#" },
-  { name: "Contact", href: "#" },
-];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,17 +37,30 @@ export default function Header() {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                onClick={() => {
-                  navigate(item.href);
-                }}
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                {item.name}
-              </a>
-            ))}
+            <a
+              onClick={() => {
+                navigate("/");
+              }}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Home
+            </a>
+            <a
+              onClick={() => {
+                navigate("");
+              }}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Services
+            </a>
+            <a
+              onClick={() => {
+                navigate("");
+              }}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Contact
+            </a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a
@@ -102,15 +109,30 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+                  <a
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Home
+                  </a>
+                  <a
+                    onClick={() => {
+                      navigate("");
+                    }}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Services
+                  </a>
+                  <a
+                    onClick={() => {
+                      navigate("");
+                    }}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Contact
+                  </a>
                 </div>
                 <div className="py-6">
                   <a
