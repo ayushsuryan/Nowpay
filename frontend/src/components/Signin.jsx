@@ -3,10 +3,12 @@ import { useRecoilState } from "recoil";
 import { userCrentials } from "../store/Signin";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
   const [userCrential, setUserCredentials] = useRecoilState(userCrentials);
   const navigate = useNavigate();
+
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
@@ -21,10 +23,12 @@ export default function Login() {
       const decoded = jwtDecode(token);
       if (decoded) {
         localStorage.setItem("nowPayToken", "Bearer " + token);
+        toast.success("Login Successfull");
       }
       // console.log(decoded);
     } catch (error) {
       console.log("An error occurred");
+      toast.error("Incorrect Credentials");
     }
   };
   return (
